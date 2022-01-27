@@ -6,7 +6,7 @@
 >
 </bm-select>
 <br>
-<textarea [(ngModel)]="builtQuery"  rows="4" cols="50"></textarea>
+<textarea [(ngModel)]="builtQuery" (ngModelChange)="modelChangeFn($event)" rows="4" cols="50"></textarea>
 <br>
 <button type="button" (click)="addEmptyClause()">Add Clause</button>
 </div>

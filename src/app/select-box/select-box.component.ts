@@ -54,4 +54,33 @@ export class SelectBoxComponent implements OnInit {
        }
     }
   }
+
+  modelChangeFn(event: any){
+    //TextArea Content
+    console.log(event);
+    var splitted = event.split("AND", 10);
+    //remove blanks
+    splitted = splitted.map(function(e: string) {
+      e = e.replace(/\s/g, "");
+      return e;
+    });
+
+    console.log(splitted);
+    //rebuild oldClauses
+    this.oldClauses = [
+            {
+                field: 'DOSSIER_register_nr',
+                operator: '=',
+                value: '--'
+            },
+            {
+                field: 'DOSSIER_register_nr',
+                operator: '=',
+                value: '---'
+            }
+      ]
+  }
+
+  fromStringToClause(text: String){
+  }
 }
