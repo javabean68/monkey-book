@@ -35,22 +35,33 @@ export class SelectBoxComponent implements OnInit {
         operator: '',
         value: ''
       });
-      this.builtQuery += "5";
+      this.buildQuery();
     }
   }
 
   @Input() removeClause(toRemove: Clause) {
     if(this.oldClauses.length > 1) {
         this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
-        this.builtQuery += "6";
+        this.buildQuery();
       }
   }
 
   @Input() changedClause(changed: Clause) {
-       this.builtQuery += "7";
+    this.buildQuery();
   }
 
   ngOnInit(): void {
-    this.builtQuery += "4";
+    this.buildQuery();
+  }
+
+  buildQuery(){
+    this.builtQuery = '';
+    for (let c of this.oldClauses) {
+      if(this.builtQuery){
+        this.builtQuery = this.builtQuery + " AND " + c.field + c.operator + c.value;
+       } else {
+        this.builtQuery = c.field + c.operator + c.value;
+       }
+    }
   }
 }
