@@ -15,12 +15,16 @@ export class SelectComponent implements OnInit {
 
   @Input() clause: Clause = {field: '', operator: '', value : ''};
   @Output() removeClauseEvent = new EventEmitter<Clause>();
+  @Output() changeClauseEvent = new EventEmitter<Clause>();
 
   fireRemoveEvent(){
     this.removeClauseEvent.emit(this.clause);
   }
 
-  constructor() { }
+  modelChangeFn(event: any){
+    console.log(event);
+    this.changeClauseEvent.emit(this.clause);
+  }
 
   ngOnInit(): void {
   }

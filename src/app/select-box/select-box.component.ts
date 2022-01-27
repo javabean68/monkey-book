@@ -46,6 +46,10 @@ export class SelectBoxComponent implements OnInit {
       }
   }
 
+  @Input() changedClause(changed: Clause) {
+       this.builtQuery += "7";
+  }
+
   ngOnInit(): void {
     this.builtQuery += "4";
   }
