@@ -39,13 +39,16 @@ export class SelectBoxComponent implements OnInit {
   }
 
   @Input() removeClause(toRemove: Clause) {
-    if(this.oldClauses.length > 1)
-      this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
+    if(this.oldClauses.length > 1) {
+        this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
+        this.builtQuery += "6";
+      }
   }
 
-  newClauses: Clause[] = [];
-
-  constructor() { }
+  @Input() modelChanged() {
+      if(this.oldClauses.length > 0)
+        this.builtQuery += "6";
+  }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,5 @@
 <div>
 <bm-select *ngFor="let c of oldClauses" [clause]="c"  (removeClauseEvent)="removeClause(c)"></bm-select>
-
-
+<textarea [(ngModel)]="builtQuery"></textarea>
 <button type="button" (click)="addEmptyClause()">Add Clause</button>
 </div>
