@@ -8,6 +8,7 @@ import { BookListItemComponent } from './book-list-item/book-list-item.component
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SelectComponent } from './select/select.component';
 import { SelectBoxComponent } from './select-box/select-box.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SelectBoxComponent } from './select-box/select-box.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,14 @@
-<div>
-<select name="fields" id="fields">
-  <option *ngFor="let field of fields" value="field">{{field}}</option>
-</select>
-<select name="operators" id="operators">
-  <option *ngFor="let operator of operators" value="operator">{{operator}}</option>
-</select>
-<input type="text" id="fvalue" name="fvalue" [value]="value">
-<button type="button">Remove</button>
+<div class="form-group">
+
+  <select class="form-control" id="field" required>
+    <option *ngFor="let field of fields" [value]="clause.field">{{clause.field}}</option>
+  </select>
+  <select class="form-control" id="operator" required>
+    <option *ngFor="let operator of operators" [value]="clause.operator">{{clause.operator}}</option>
+  </select>
+  <input type="text" class="form-control" id="value"
+         required
+         [(ngModel)]="clause.value" name="value">
+
 </div>
 <br>
