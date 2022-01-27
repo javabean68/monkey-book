@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Clause } from '../shared/clause'
 
@@ -13,7 +13,12 @@ export class SelectComponent implements OnInit {
   operators: string[] = ['=', '!=', '<', '>'];
   value: string = '-';
 
-  @Input() clause: Clause = {field: 'COMPANY_suva_nr', operator: '>', value : '2'};
+  @Input() clause: Clause = {field: '', operator: '', value : ''};
+  @Output() removeClauseEvent = new EventEmitter<Clause>();
+
+  fireRemoveEvent(){
+    this.removeClauseEvent.emit(this.clause);
+  }
 
   constructor() { }
 

@@ -1,5 +1,5 @@
 <div>
-<bm-select *ngFor="let c of oldClauses" [clause]="c"></bm-select>
+<bm-select *ngFor="let c of oldClauses" [clause]="c"  (removeClauseEvent)="removeClause(c)"></bm-select>
 
 
 <button type="button" (click)="addEmptyClause()">Add Clause</button>

@@ -19,6 +19,8 @@
          required
          [(ngModel)]="clause.value" name="value">
 
+  <button type="button" (click)="fireRemoveEvent()">Remove Clause</button>
+
   {{ clause | json }}
 
 </div>

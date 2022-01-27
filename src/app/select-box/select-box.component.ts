@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Clause } from '../shared/clause'
 
@@ -36,6 +36,11 @@ export class SelectBoxComponent implements OnInit {
         value: ''
       });
     }
+  }
+
+  @Input() removeClause(toRemove: Clause) {
+    if(this.oldClauses.length > 1)
+      this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
   }
 
   newClauses: Clause[] = [];
