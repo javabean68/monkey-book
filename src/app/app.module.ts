@@ -7,6 +7,7 @@ import { BookListComponent } from './book-list/book-list.component';
 import { BookListItemComponent } from './book-list-item/book-list-item.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { SelectComponent } from './select/select.component';
+import { SelectBoxComponent } from './select-box/select-box.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SelectComponent } from './select/select.component';
     BookListComponent,
     BookListItemComponent,
     BookDetailsComponent,
-    SelectComponent
+    SelectComponent,
+    SelectBoxComponent
   ],
   imports: [
     BrowserModule,
