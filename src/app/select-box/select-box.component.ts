@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Clause } from '../shared/clause'
-import { Constants } from '../shared/constants'
+import { CockpitService } from '../shared/cockpit.service'
 
 @Component({
   selector: 'bm-select-box',
@@ -11,9 +11,10 @@ import { Constants } from '../shared/constants'
 export class SelectBoxComponent implements OnInit {
   builtQuery: string = "";
 
-  fields: string[] = Constants.fields;
-  operators: string[] = Constants.operators;
-  value: string = Constants.value;
+  constructor(private cockpitService: CockpitService){}
+  fields: string[] = this.cockpitService.getFields();
+  operators: string[] = this.cockpitService.getOperators();
+  value: string = this.cockpitService.getDefaultValue();
 
   oldClauses: Clause[] = [
         {
@@ -24,6 +25,7 @@ export class SelectBoxComponent implements OnInit {
   ];
 
   addEmptyClause() {
+    //add an empty clause only when the value for the last is given
     if(!(this.oldClauses.slice(-1)[0].value == '')){
       this.oldClauses.push({
         field: '',

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Clause } from '../shared/clause'
-import { Constants } from '../shared/constants'
+import { CockpitService } from '../shared/cockpit.service'
 
 @Component({
   selector: 'bm-select',
@@ -10,9 +10,11 @@ import { Constants } from '../shared/constants'
 })
 /* https://angular.io/guide/forms */
 export class SelectComponent implements OnInit {
-   fields: string[] = Constants.fields;
-   operators: string[] = Constants.operators;
-   value: string = Constants.value;
+
+  constructor(private cockpitService: CockpitService){}
+  fields: string[] = this.cockpitService.getFields();
+  operators: string[] = this.cockpitService.getOperators();
+  value: string = this.cockpitService.getDefaultValue();
 
   @Input() clause: Clause = {field: '', operator: '', value : ''};
   @Output() removeClauseEvent = new EventEmitter<Clause>();
