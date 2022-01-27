@@ -28,6 +28,16 @@ export class SelectBoxComponent implements OnInit {
        }
   ];
 
+  addEmptyClause() {
+    if(!(this.oldClauses.slice(-1)[0].value == '')){
+      this.oldClauses.push({
+        field: '',
+        operator: '',
+        value: ''
+      });
+    }
+  }
+
   newClauses: Clause[] = [];
 
   constructor() { }
