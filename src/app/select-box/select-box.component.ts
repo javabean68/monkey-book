@@ -14,18 +14,8 @@ export class SelectBoxComponent implements OnInit {
         {
             field: 'DOSSIER_register_nr',
             operator: '=',
-            value: '1207890023'
-        },
-        {
-            field: 'DOSSIER_register_nr',
-            operator: '=',
-            value: '1207890024'
-        },
-       {
-           field: 'DOSSIER_register_nr',
-           operator: '=',
-           value: '1207890025'
-       }
+            value: '-'
+        }
   ];
 
   addEmptyClause() {
