@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Clause } from '../shared/clause'
+import { Constants } from '../shared/constants'
 
 @Component({
   selector: 'bm-select-box',
@@ -9,6 +10,10 @@ import { Clause } from '../shared/clause'
 })
 export class SelectBoxComponent implements OnInit {
   builtQuery: string = "";
+
+  fields: string[] = Constants.fields;
+  operators: string[] = Constants.operators;
+  value: string = Constants.value;
 
   oldClauses: Clause[] = [
         {
@@ -66,21 +71,30 @@ export class SelectBoxComponent implements OnInit {
     });
 
     console.log(splitted);
+
+    console.log(this.fromStringToClause(splitted[0]));
     //rebuild oldClauses
-    this.oldClauses = [
-            {
-                field: 'DOSSIER_register_nr',
-                operator: '=',
-                value: '--'
-            },
-            {
-                field: 'DOSSIER_register_nr',
-                operator: '=',
-                value: '---'
-            }
-      ]
+    this.oldClauses = [];
+    for(let s of splitted){
+      var clause = this.fromStringToClause(s);
+      if(clause != null){
+        this.oldClauses.push(clause);
+      }
+    }
   }
 
   fromStringToClause(text: String){
+    //find the position of the operator
+    for(let op of this.operators){
+      var pos = text.indexOf(op);
+      if(pos != -1){
+        return {
+             field: text.substring(0, pos),
+             operator: op,
+             value: text.substring(pos + op.length, text.length)
+         }
+       }
+    }
+    return null;
   }
 }

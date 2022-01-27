@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Clause } from '../shared/clause'
+import { Constants } from '../shared/constants'
 
 @Component({
   selector: 'bm-select',
@@ -9,9 +10,9 @@ import { Clause } from '../shared/clause'
 })
 /* https://angular.io/guide/forms */
 export class SelectComponent implements OnInit {
-  fields: string[] = ['DOSSIER_register_nr', 'COMPANY_suva_nr'];
-  operators: string[] = ['=', '!=', '<', '>'];
-  value: string = '-';
+   fields: string[] = Constants.fields;
+   operators: string[] = Constants.operators;
+   value: string = Constants.value;
 
   @Input() clause: Clause = {field: '', operator: '', value : ''};
   @Output() removeClauseEvent = new EventEmitter<Clause>();
