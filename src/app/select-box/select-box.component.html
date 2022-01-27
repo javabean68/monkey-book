@@ -1,4 +1,6 @@
 <div>
-<bm-select></bm-select>
+<bm-select *ngFor="let c of oldClauses" [clause]="c"></bm-select>
+
+
 <button type="button">Add</button>
 </div>

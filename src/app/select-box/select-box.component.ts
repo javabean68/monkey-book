@@ -10,11 +10,22 @@ import { Clause } from '../shared/clause'
 export class SelectBoxComponent implements OnInit {
   builtQuery: string = "";
 
-  oldClauses: Clause[] = [{
-        field: 'DOSSIER_register_nr',
-        operator: '=',
-        value: '1207890023'
-        }
+  oldClauses: Clause[] = [
+        {
+            field: 'DOSSIER_register_nr',
+            operator: '=',
+            value: '1207890023'
+        },
+        {
+            field: 'DOSSIER_register_nr',
+            operator: '=',
+            value: '1207890024'
+        },
+       {
+           field: 'DOSSIER_register_nr',
+           operator: '=',
+           value: '1207890025'
+       }
   ];
 
   newClauses: Clause[] = [];
@@ -23,5 +34,4 @@ export class SelectBoxComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
