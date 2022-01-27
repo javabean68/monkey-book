@@ -35,6 +35,7 @@ export class SelectBoxComponent implements OnInit {
         operator: '',
         value: ''
       });
+      this.builtQuery += "5";
     }
   }
 
@@ -45,11 +46,7 @@ export class SelectBoxComponent implements OnInit {
       }
   }
 
-  @Input() modelChanged() {
-      if(this.oldClauses.length > 0)
-        this.builtQuery += "6";
-  }
-
   ngOnInit(): void {
+    this.builtQuery += "4";
   }
 }
