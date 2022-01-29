@@ -1,12 +1,10 @@
 <div>
-<!--https://ultimatecourses.com/blog/difference-change-ngmodelchange-angular-->
-<bm-select *ngFor="let c of oldClauses" [clause]="c"
-           (removeClauseEvent)="removeClause(c)"
-           (changeClauseEvent)="changedClause(c)"
->
-</bm-select>
-<br>
-<textarea [(ngModel)]="builtQuery" (ngModelChange)="modelChangeFn($event)" rows="4" cols="50"></textarea>
-<br>
-<button type="button" (click)="addEmptyClause()">Add Clause</button>
+  <!--https://ultimatecourses.com/blog/difference-change-ngmodelchange-angular-->
+  <bm-select *ngFor="let c of oldClauses" [clause]="c" (removeClauseEvent)="removeClause(c)"
+    (changeClauseEvent)="changedClause(c)">
+  </bm-select>
+  <br>
+  <textarea [(ngModel)]="builtQuery" (ngModelChange)="modelChangeFn($event)" rows="4" cols="50"></textarea>
+  <br>
+  <button type="button" (click)="addEmptyClause()">Add Clause</button>
 </div>
