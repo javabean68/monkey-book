@@ -1,26 +1,20 @@
 <div class="form-group">
 
 
-  <select class="form-control"  id="field"
-          required
-          [(ngModel)]="clause.field" name="field"
-          (ngModelChange)="modelChangeFn($event)">
+  <select class="form-control" id="field" required [(ngModel)]="clause.field" name="field"
+    (ngModelChange)="modelChangeFn($event)">
     <option *ngFor="let field of fields" [value]="field">{{field}}</option>
   </select>
 
 
-  <select class="form-control"  id="operator"
-          required
-          [(ngModel)]="clause.operator" name="operator"
-          (ngModelChange)="modelChangeFn($event)">
+  <select class="form-control" id="operator" required [(ngModel)]="clause.operator" name="operator"
+    (ngModelChange)="modelChangeFn($event)">
     <option *ngFor="let operator of operators" [value]="operator">{{operator}}</option>
   </select>
 
 
-  <input type="text" class="form-control" id="value"
-         required
-         [(ngModel)]="clause.value" name="value"
-         (ngModelChange)="modelChangeFn($event)">
+  <input type="text" class="form-control" id="value" required [(ngModel)]="clause.value" name="value"
+    (ngModelChange)="modelChangeFn($event)">
 
   <button type="button" (click)="fireRemoveEvent()">Remove Clause</button>
 

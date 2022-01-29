@@ -11,22 +11,22 @@ import { CockpitService } from '../shared/cockpit.service'
 export class SelectBoxComponent implements OnInit {
   builtQuery: string = "";
 
-  constructor(private cockpitService: CockpitService){}
+  constructor(private cockpitService: CockpitService) { }
   fields: string[] = this.cockpitService.getFields();
   operators: string[] = this.cockpitService.getOperators();
   value: string = this.cockpitService.getDefaultValue();
 
   oldClauses: Clause[] = [
-        {
-            field: 'DOSSIER_register_nr',
-            operator: '=',
-            value: '-'
-        }
+    {
+      field: 'DOSSIER_register_nr',
+      operator: '=',
+      value: '-'
+    }
   ];
 
   addEmptyClause() {
     //add an empty clause only when the value for the last is given
-    if(!(this.oldClauses.slice(-1)[0].value == '')){
+    if (!(this.oldClauses.slice(-1)[0].value == '')) {
       this.oldClauses.push({
         field: '',
         operator: '',
@@ -37,10 +37,10 @@ export class SelectBoxComponent implements OnInit {
   }
 
   @Input() removeClause(toRemove: Clause) {
-    if(this.oldClauses.length > 1) {
-        this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
-        this.buildQuery();
-      }
+    if (this.oldClauses.length > 1) {
+      this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
+      this.buildQuery();
+    }
   }
 
   @Input() changedClause(changed: Clause) {
@@ -51,23 +51,23 @@ export class SelectBoxComponent implements OnInit {
     this.buildQuery();
   }
 
-  buildQuery(){
+  buildQuery() {
     this.builtQuery = '';
     for (let c of this.oldClauses) {
-      if(this.builtQuery){
+      if (this.builtQuery) {
         this.builtQuery = this.builtQuery + " AND " + c.field + c.operator + c.value;
-       } else {
+      } else {
         this.builtQuery = c.field + c.operator + c.value;
-       }
+      }
     }
   }
 
-  modelChangeFn(event: any){
+  modelChangeFn(event: any) {
     //TextArea Content
     console.log(event);
     var splitted = event.split("AND", 10);
     //remove blanks
-    splitted = splitted.map(function(e: string) {
+    splitted = splitted.map(function (e: string) {
       e = e.replace(/\s/g, "");
       return e;
     });
@@ -77,25 +77,25 @@ export class SelectBoxComponent implements OnInit {
     console.log(this.fromStringToClause(splitted[0]));
     //rebuild oldClauses
     this.oldClauses = [];
-    for(let s of splitted){
+    for (let s of splitted) {
       var clause = this.fromStringToClause(s);
-      if(clause != null){
+      if (clause != null) {
         this.oldClauses.push(clause);
       }
     }
   }
 
-  fromStringToClause(text: String){
+  fromStringToClause(text: String) {
     //find the position of the operator
-    for(let op of this.operators){
+    for (let op of this.operators) {
       var pos = text.indexOf(op);
-      if(pos != -1){
+      if (pos != -1) {
         return {
-             field: text.substring(0, pos),
-             operator: op,
-             value: text.substring(pos + op.length, text.length)
-         }
-       }
+          field: text.substring(0, pos),
+          operator: op,
+          value: text.substring(pos + op.length, text.length)
+        }
+      }
     }
     return null;
   }

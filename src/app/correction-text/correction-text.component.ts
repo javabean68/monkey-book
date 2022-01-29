@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CockpitService } from '../shared/cockpit.service'
 
 @Component({
   selector: 'bm-correction-text',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CorrectionTextComponent implements OnInit {
 
-  constructor() { }
+  oldText!: string;
+  newText!: string;
+  correctionText!: string;
+  @Output() changeCorrectionEvent = new EventEmitter<string>();
+
+  /**
+   * Wird anfangs die bestehende Korrektur durch den WS geliefert?
+   * @param cockpitService
+   */
+  constructor(private cockpitService: CockpitService) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * Muss die Korrektur auch nach draussen bekannt gemacht werden?
+   * @param event
+   */
+  modelChangeFn(event: any) {
+    this.correctionText = 's{' + this.oldText + "|" + this.newText + '}g';
+    this.changeCorrectionEvent.emit(this.correctionText);
+    console.log(event);
   }
 
 }
