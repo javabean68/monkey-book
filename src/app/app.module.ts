@@ -9,6 +9,7 @@ import { BookDetailsComponent } from './book-details/book-details.component';
 import { SelectComponent } from './select/select.component';
 import { SelectBoxComponent } from './select-box/select-box.component';
 import { FormsModule } from '@angular/forms';
+import { CorrectionTextComponent } from './correction-text/correction-text.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { FormsModule } from '@angular/forms';
     BookListItemComponent,
     BookDetailsComponent,
     SelectComponent,
-    SelectBoxComponent
+    SelectBoxComponent,
+    CorrectionTextComponent
   ],
   imports: [
     BrowserModule,
