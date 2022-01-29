@@ -11,20 +11,21 @@ import { CockpitService } from '../shared/cockpit.service'
 /* https://angular.io/guide/forms */
 export class SelectComponent implements OnInit {
 
-  constructor(private cockpitService: CockpitService){}
+  constructor(private cockpitService: CockpitService) { }
+
   fields: string[] = this.cockpitService.getFields();
   operators: string[] = this.cockpitService.getOperators();
   value: string = this.cockpitService.getDefaultValue();
 
-  @Input() clause: Clause = {field: '', operator: '', value : ''};
+  @Input() clause: Clause = { field: '', operator: '', value: '' };
   @Output() removeClauseEvent = new EventEmitter<Clause>();
   @Output() changeClauseEvent = new EventEmitter<Clause>();
 
-  fireRemoveEvent(){
+  fireRemoveEvent() {
     this.removeClauseEvent.emit(this.clause);
   }
 
-  modelChangeFn(event: any){
+  modelChangeFn(event: any) {
     console.log(event);
     this.changeClauseEvent.emit(this.clause);
   }
