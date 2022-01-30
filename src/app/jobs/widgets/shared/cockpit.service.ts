@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class CockpitService {
   fields: string[] = ['DOSSIER_register_nr', 'COMPANY_suva_nr'];
-  operators: string[] = ['=', '!=', '<', '>'];
+  operators: string[] = ['<>', '>=', '<=', '=', '<', '>'];
   defaultValue: string = '-';
 
   getFields() : string[] { return this.fields;}
