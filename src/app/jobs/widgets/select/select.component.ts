@@ -25,8 +25,7 @@ export class SelectComponent implements OnInit {
     this.removeClauseEvent.emit(this.clause);
   }
 
-  modelChangeFn(event: any) {
-    console.log(event);
+  modelChange() {
     this.changeClauseEvent.emit(this.clause);
   }
 
