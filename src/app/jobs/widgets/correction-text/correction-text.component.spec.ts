@@ -22,4 +22,21 @@ describe('CorrectionTextComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should trigger an event on "modelChange"', () => {
+    {
+      //arrange
+      let receivedText!: string;
+      component.changeCorrectionEvent.subscribe(
+      text => {receivedText = text});
+      component.oldText = 'toChange';
+      component.newText = 'correction';
+
+      //act - simulate event sending
+      component.modelChange();
+
+      //assert
+      expect(receivedText).toBe('s{toChange|correction}g');
+    }
+  });
 });

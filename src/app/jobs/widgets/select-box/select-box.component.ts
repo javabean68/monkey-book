@@ -10,13 +10,13 @@ import { CockpitService } from '../shared/cockpit.service'
 })
 export class SelectBoxComponent implements OnInit {
   builtQuery: string = "";
-
-  constructor(private cockpitService: CockpitService) { }
   fields: string[] = this.cockpitService.getFields();
   operators: string[] = this.cockpitService.getOperators();
   value: string = this.cockpitService.getDefaultValue();
 
-  oldClauses: Clause[] = [
+  constructor(private cockpitService: CockpitService) { }
+
+  clauses: Clause[] = [
     {
       field: 'DOSSIER_register_nr',
       operator: '=',
@@ -24,21 +24,9 @@ export class SelectBoxComponent implements OnInit {
     }
   ];
 
-  addEmptyClause() {
-    //add an empty clause only when the value for the last is given
-    if (!(this.oldClauses.slice(-1)[0].value == '')) {
-      this.oldClauses.push({
-        field: '',
-        operator: '',
-        value: ''
-      });
-      this.buildQuery();
-    }
-  }
-
   @Input() removeClause(toRemove: Clause) {
-    if (this.oldClauses.length > 1) {
-      this.oldClauses = this.oldClauses.filter(obj => obj !== toRemove);
+    if (this.clauses.length > 1) {
+      this.clauses = this.clauses.filter(obj => obj !== toRemove);
       this.buildQuery();
     }
   }
@@ -51,9 +39,21 @@ export class SelectBoxComponent implements OnInit {
     this.buildQuery();
   }
 
+  addEmptyClause() {
+    //add an empty clause only when the value for the last is given
+    if (!(this.clauses.slice(-1)[0].value == '')) {
+      this.clauses.push({
+        field: '',
+        operator: '',
+        value: ''
+      });
+      this.buildQuery();
+    }
+  }
+
   buildQuery() {
     this.builtQuery = '';
-    for (let c of this.oldClauses) {
+    for (let c of this.clauses) {
       if (this.builtQuery) {
         this.builtQuery = this.builtQuery + " AND " + c.field + c.operator + c.value;
       } else {
@@ -62,25 +62,22 @@ export class SelectBoxComponent implements OnInit {
     }
   }
 
-  modelChangeFn(event: any) {
+  modelChange(event: any) {
     //TextArea Content
     console.log(event);
     var splitted = event.split("AND", 10);
     //remove blanks
-    splitted = splitted.map(function (e: string) {
-      e = e.replace(/\s/g, "");
-      return e;
+    splitted = splitted.map((text: string) => {
+      text =text.replace(/\s/g, "");
+      return text;
     });
 
-    console.log(splitted);
-
-    console.log(this.fromStringToClause(splitted[0]));
     //rebuild oldClauses
-    this.oldClauses = [];
+    this.clauses = [];
     for (let s of splitted) {
       var clause = this.fromStringToClause(s);
       if (clause != null) {
-        this.oldClauses.push(clause);
+        this.clauses.push(clause);
       }
     }
   }

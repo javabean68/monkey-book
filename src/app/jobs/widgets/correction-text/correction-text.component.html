@@ -4,7 +4,7 @@
     <td>
 
       <label for="oldText">old</label>
-      <textarea [(ngModel)]="oldText" (ngModelChange)="modelChangeFn($event)" rows="4" cols="50"></textarea>
+      <textarea [(ngModel)]="oldText" (ngModelChange)="modelChange()" rows="4" cols="50"></textarea>
 
     </td>
   </tr>
@@ -12,7 +12,7 @@
     <td>
 
       <label for="newText">new</label>
-      <textarea [(ngModel)]="newText" (ngModelChange)="modelChangeFn($event)" rows="4" cols="50"></textarea>
+      <textarea [(ngModel)]="newText" (ngModelChange)="modelChange()" rows="4" cols="50"></textarea>
 
     </td>
   </tr>

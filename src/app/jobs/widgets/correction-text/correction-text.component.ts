@@ -26,10 +26,10 @@ export class CorrectionTextComponent implements OnInit {
    * Muss die Korrektur auch nach draussen bekannt gemacht werden?
    * @param event
    */
-  modelChangeFn(event: any) {
+  modelChange() {
     this.correctionText = 's{' + this.oldText + "|" + this.newText + '}g';
     this.changeCorrectionEvent.emit(this.correctionText);
-    console.log(event);
+    console.log(this.correctionText);
   }
 
 }

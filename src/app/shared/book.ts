@@ -1,6 +1,6 @@
 export interface Book {
   isbn: string;
-  title: string;
+  title?: string;
   authors: string[];
   published: Date;
   subtitle?: string;
